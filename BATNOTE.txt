@@ -1,0 +1,42 @@
+NOTE_DS4, 0, NOTE_DS4, 0, NOTE_D4, 0, NOTE_D4, 0, NOTE_CS4, 0, NOTE_CS4, 0, NOTE_D4, 0, NOTE_D4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_D4, 0, NOTE_D4, 0, NOTE_CS4, 0, NOTE_CS4, 0, NOTE_D4, 0, NOTE_D4, 0, NOTE_DS6, 0, NOTE_DS6
+
+NOTE_DS4, 0, NOTE_DS4, 0, NOTE_D4, 0, NOTE_D4, 0, NOTE_CS4, 0, NOTE_CS4, 0, NOTE_D4, 0, NOTE_D4, 0, NOTE_DS4, 0, NOTE_DS4, 0, NOTE_D4, 0, NOTE_D4, 0, NOTE_CS4, 0, NOTE_CS4, 0, NOTE_D4, 0, NOTE_D4, 0, NOTE_GS6, 0, NOTE_GS6
+
+125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 125, 10, 250, 10, 2000
+
+if ((time - startTime) % looplength <= 2160) {
+	if ( 125 <= (((time - startTime) % looplength) % 135) <= 134) { // rest note
+		digitalWrite(led1Pin, LOW);
+		digitalWrite(led2Pin, LOW);
+		digitalWrite(led3Pin, LOW);
+	}
+	else if ( (((time - startTime) % looplength) / 270) % 2 == 1) { // NOTE_D4
+		digitalWrite(led1Pin, HIGH);
+		digitalWrite(led2Pin, HIGH);
+		digitalWrite(led3Pin, LOW);
+	} 
+	else if ( (((time - startTime) % looplength) / 270) % 4 == 0) { // NOTE_DS4
+		digitalWrite(led1Pin, HIGH);
+		digitalWrite(led2Pin, HIGH);
+		digitalWrite(led3Pin, HIGH);
+	}
+	else {
+		digitalWrite(led1Pin, HIGH);
+		digitalWrite(led2Pin, LOW);
+		digitalWrite(led3Pin, LOW);
+	}
+}
+else {
+	if ( 2160 <= (time - startTime) % looplength <= 2309 || 2320 <= (time - startTime) % looplength <= 3419) {
+		digitalWrite(led1Pin, HIGH);
+		digitalWrite(led2Pin, HIGH);
+		digitalWrite(led3Pin, HIGH);
+		// digitalWrite(led4Pin, HIGH);
+		// digitalWrite(led5Pin, HIGH);
+	}
+	else {
+		digitalWrite(led1Pin, LOW);
+		digitalWrite(led2Pin, LOW);
+		digitalWrite(led3Pin, LOW);
+	}
+}
